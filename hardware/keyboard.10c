@@ -1,0 +1,22 @@
+; --------------------------------------------
+; Title:   keyboard
+; Author:  azertyfun
+; Date:    10/10/2012
+; Version: 
+; --------------------------------------------
+
+:pressAnyKey
+	JSR clearKeyBuffer
+	SET C, 0
+	:PAKLoop
+	SET A, 1
+	HWI [keyboard_address]
+		IFN C, 0
+			SET PC, POP
+	SET PC, PAKLoop
+
+
+:clearKeyBuffer
+	SET A, 0
+	HWI [keyboard_address]
+	SET PC, POP

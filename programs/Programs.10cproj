@@ -21,7 +21,6 @@
     <file path="load.10c" />
     <file path="readDisk.10c" />
     <file path="shutdown.10c" />
-    <file path="subroutines.10c" />
     <file path="sysinfo.10c" />
   </files>
 </project>
