@@ -1,0 +1,73 @@
+; --------------------------------------------
+; Title:   load
+; Author:  azertyfun
+; Date:    9/10/2012
+; Version: 
+; --------------------------------------------
+
+:loadProgram
+	JSR clear
+	SET [validCommand], 1
+
+	IFE [disk_address], 0
+		SET PC, loaderNoHMD
+
+	SET A, 0x0000
+	HWI [disk_address]
+	IFE B, 0
+		SET PC, loaderNoDisk
+		
+	SET A, 0x0001
+	HWI [disk_address]
+	SET [wordsNumber], C
+	MUL [wordsNumber], B
+	SET [wordsPerSector], B
+	SET [sectorsNumber], C
+
+	IFG [wordsNumber], 0x1000
+		JSR tooBigprogram
+	
+	:loadedProgram DAT 0
+	SET A, 0x0010
+	SET B, 0x0000
+	SET C, [sectorsNumber]
+	SET X, loadedProgram
+	
+	JSR loadedProgram
+	
+	SET PC, POP
+	
+	
+	
+:loaderNoDisk
+	SET A, noDiskPresentText
+	SET B, 0x8000
+	JSR write
+	
+	JSR pressAnykey
+	
+	SET PC, POP ;Do not return to loadProgram but the console because we're here by a SET PC, loaderNoDisk and not a JSR loaderNoDisk
+	
+	
+:loaderNoHMD
+	SET A, noHMD2043presentText
+	SET B, 0x8000
+	JSR write
+	
+	JSR pressAnyKey
+	
+	SET PC, POP ;Idem that loaderNoDisk
+	
+	
+:tooBigProgram
+	SET A, tooBigText
+	SET B, 0x8000
+	JSR write
+	
+	JSR pressAnykey
+	
+	SET PC, POP ;Idem that loaderNoDisk
+	
+:sectorsNumber DAT 0
+:wordsNumber DAT 0
+:wordsPerSector DAT 0

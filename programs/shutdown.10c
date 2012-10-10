@@ -1,0 +1,11 @@
+; --------------------------------------------
+; Title:   shutdown
+; Author:  Nathan
+; Date:    10/09/2012
+; Version: 1.0
+; --------------------------------------------
+
+:shutdownProgram
+	SET [validCommand], 1
+	SET [BOOLshutdown], 1
+	SET PC, POP

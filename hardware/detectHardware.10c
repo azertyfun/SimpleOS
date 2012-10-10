@@ -1,0 +1,24 @@
+; --------------------------------------------
+; Title:   detectHardware
+; Author:  azertyfun - based on a Vdragorn's example
+; Date:    8/09/2012
+; Version: 1.0
+; --------------------------------------------
+
+:PILOT_search ; init pilot system
+    HWN Z
+    SET J, -1
+    :PILOT_search_loop
+        HWQ J
+        IFE A, 0xF615
+            SET [screen_address], J
+        IFE a, 0x7406
+            SET [keyboard_address], J
+        IFE a, 0xB402
+            SET [clock_address], J
+        IFE A, 0x4CAE
+        	SET [disk_address], J
+        ADD J,1
+        IFN Z,J
+            SET PC, PILOT_search_loop
+    SET PC, POP

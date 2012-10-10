@@ -1,0 +1,42 @@
+; --------------------------------------------
+; Title:   disk
+; Author:  azertyfun
+; Date:    9/10/2012
+; Version: 
+; --------------------------------------------
+
+;Returns 1 in Z if HMD present, else 0.
+:detectHMD
+	IFE [disk_address], 0
+		SET Z, 0
+	IFN [disk_address], 1
+		SET Z, 1
+		
+	SET PC, POP
+	
+;Returns 1 in Z if a disk is present, else 0
+:detectDisk
+	SET A, 0x0000
+	HWI [disk_address]
+	SET Z, B
+	
+	SET PC, POP
+	
+;Returns 1 in Z if write-locket, else 0
+:getLocked
+	SET A, 0x0001
+	HWI [disk_address]
+	SET Z, X
+	
+	SET PC, POP
+	
+;Returns number of sectors in X, words per sector in Y, number of words in Z.
+:getDiskInfo
+	SET A, 0x0001
+	HWI [disk_address]
+	SET X, C
+	SET Y, B
+	SET Z, Y
+	MUL Z, X
+	
+	SET PC, POP

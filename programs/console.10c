@@ -1,0 +1,191 @@
+; --------------------------------------------
+; Title:   console
+; Author:  azertyfun
+; Date:    9/09/2012
+; Version: 1.0
+; --------------------------------------------
+
+:console
+	JSR init_console
+	JSR read_console
+	JSR execCommand	
+	
+	IFN [BOOLshutdown], 1
+		SET PC, console
+		
+	SET PC, POP
+	
+:init_console
+	JSR clear
+	
+	SET A, typeHelp
+	SET B, 0x8000
+	JSR write
+	
+	SET A, consoleStatusBar
+	SET B, 0x8160
+	JSR write
+	
+	SET [validCommand], 0
+	
+	SET [writing_address], 0x8025
+	
+	SET A, console_startLine
+	SET B, 0x8020
+	JSR write
+	
+	SET PC, POP
+	
+:read_console
+	JSR getChar
+	IFE C, 0x11
+		SET PC, POP
+	IFE C, 0x10
+		JSR backSpace
+	IFG C, 0x1F
+		IFL C, 0x7F
+			JSR printChar
+			
+	JSR clearKeyBuffer
+			
+	SET PC, read_console
+	
+
+
+
+
+
+
+
+
+
+:getChar
+	SET A, 1
+	HWI [keyboard_address]
+	IFN C, 0
+		SET PC, POP
+	SET PC, getChar
+
+:printChar
+	IFG [writing_address], 0x8045
+		SET PC, POP
+		
+	SET B, [writing_address]
+	SET A, [color]
+	BOR C, A
+	SET [B], C
+	ADD [writing_address], 1
+	SET PC, POP
+	
+:backSpace
+	IFE [writing_address], 0x8025
+		SET PC, POP
+		
+	SUB [writing_address], 1
+	SET B, [writing_address]
+	SET [B], 0xF920
+	
+	SET PC, POP
+	
+:execCommand
+	SET I, 0x8025
+	SET A, command
+	
+	:execCommandLoop
+		SET [A], [I]
+		AND [A], 0x00FF
+		
+		IFE [A], 0x20
+			SET [A], 0
+		
+		IFE I, 0x8045
+			SET PC, execCommandNext
+		
+		ADD I, 1
+		ADD A, 1
+		SET PC, execCommandLoop
+	:execCommandNext
+		SET A, command
+		SET B, help
+		JSR strcmp
+		IFE Z, 1
+			JSR helpProgram
+			
+		SET B, about
+		JSR strcmp
+		IFE Z, 1
+			JSR aboutProgram
+			
+		SET B, shutdown
+		JSR strcmp
+		IFE Z, 1
+			JSR shutdownProgram
+			
+		SET B, readDisk
+		JSR strcmp
+		IFE Z, 1
+			JSR readDiskProgram
+			
+		SET B, sysInfo
+		JSR strcmp
+		IFE Z, 1
+			JSR sysinfoProgram
+			
+		SET B, sysInfoMin
+		JSR strcmp
+		IFE Z, 1
+			JSR sysInfoProgram
+			
+		SET B, load
+		JSR strcmp
+		IFE Z, 1
+			JSR loadProgram
+			
+		SET B, colRed
+		JSR strcmp
+		IFE Z, 1
+			SET [color], 0x4900
+		
+		SET B, colWhite
+		JSR strcmp
+		IFE Z, 1
+			SET [color], 0xF900
+			
+		SET B, colGreen
+		JSR strcmp
+		IFE Z, 1
+			SET [color], 0x2900
+		
+		SET B, colBlack
+		JSR strcmp
+		IFE Z, 1
+			SET [color], 0x0900
+	IFN [validCommand], 1
+		JSR invalidCommand
+	
+	SET PC, POP
+	
+	
+;J'ai pris ça de frOSt :)
+ 
+;---------------------------------------------
+;STRCMP return 0 in Z if the strings at A and at B are different
+;---------------------------------------------
+:strcmp
+set push,A
+set push,B
+set Z,0
+sub A,1
+sub B,1
+:sc
+add A,1
+add B,1
+ifn [A],0
+ifn [B],0
+ife [A],[B]
+set PC,sc
+ife [A],[B]
+set Z,1
+set B,pop
+set A,pop
+set PC,pop

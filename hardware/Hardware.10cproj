@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project version="1.7.5" type="code">
+  <name>hardware</name>
+  <properties>
+    <property name="code.generateBinaryOutput">False</property>
+    <property name="code.binaryOutputFilename">hardware.bin</property>
+    <property name="code.generateHexOutput">True</property>
+    <property name="code.hexOutputFilename">hardware.hex</property>
+    <property name="code.setFirstFile">False</property>
+    <property name="code.generateSelfRelocatingCode">False</property>
+    <property name="code.firstFile">detectHardware.10c</property>
+  </properties>
+  <references>
+    <project>Strings &amp; constants</project>
+    <project>programs</project>
+  </references>
+  <files>
+    <file path="detectHardware.10c" />
+    <file path="video.10c" />
+  </files>
+</project>

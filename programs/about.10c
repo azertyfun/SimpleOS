@@ -1,0 +1,15 @@
+; --------------------------------------------
+; Title:   about
+; Author:  azertyfun
+; Date:    9/09/2012
+; Version: 
+; --------------------------------------------
+
+:aboutprogram
+	JSR clear
+	SET [validCommand], 1
+	SET A, aboutText
+	SET B, 0x8000
+	JSR write
+	JSR pressAnyKey
+	SET PC, POP

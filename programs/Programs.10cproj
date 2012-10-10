@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project version="1.7.5" type="code">
+  <name>programs</name>
+  <properties>
+    <property name="code.generateBinaryOutput">False</property>
+    <property name="code.binaryOutputFilename">programs.bin</property>
+    <property name="code.generateHexOutput">True</property>
+    <property name="code.hexOutputFilename">programs.hex</property>
+    <property name="code.setFirstFile">false</property>
+  </properties>
+  <references>
+    <project>Strings &amp; constants</project>
+  </references>
+  <files>
+    <file path="help.10c" />
+    <file path="console.10c" />
+    <file path="about.10c" />
+    <file path="subroutines.10c" />
+    <file path="shutdown.10c" />
+    <file path="readDisk.10c" />
+    <file path="ecran_accueil.10c" />
+    <file path="invalidCommand.10c" />
+    <file path="sysinfo.10c" />
+    <file path="load.10c" />
+  </files>
+</project>

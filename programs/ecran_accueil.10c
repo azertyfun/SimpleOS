@@ -1,0 +1,29 @@
+; --------------------------------------------
+; Title:   ecran_accueil
+; Author:  azertyfun
+; Date:    2/10/2012
+; Version: 
+; --------------------------------------------
+
+:ecran_accueil
+	JSR clear
+	
+	SET A, 0
+	SET B, 0x9000
+	HWI [screen_address]
+
+	SET A, accueil
+	SET B, 0x80A0
+	JSR write
+	
+	SET A, 0
+	SET B, 0x8000
+	HWI [screen_address]
+	
+	SET I, 0
+	:waitLoopAccueil
+	ADD I, 1
+	IFN I, 100000
+		SET PC, waitLoopAccueil
+	
+	SET PC, POP

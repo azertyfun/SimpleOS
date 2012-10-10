@@ -1,0 +1,13 @@
+; --------------------------------------------
+; Title:   video
+; Author:  azertyfun
+; Date:    8/09/2012
+; Version: 1.0
+; --------------------------------------------
+
+:init_video
+	SET A, 0
+	SET B, [screen_map]
+	HWI [screen_address]
+	
+	SET PC, POP

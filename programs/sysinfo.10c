@@ -1,0 +1,60 @@
+; --------------------------------------------
+; Title:   sysinfo
+; Author:  zaertyfun
+; Date:    8/10/2012
+; Version: 1.0
+; --------------------------------------------
+
+:sysInfoProgram
+	JSR clear
+	SET [validCommand], 1
+	
+	SET A, sysInfoTitle
+	SET B, 0x8000
+	JSR write
+	
+	SET A, sysVersion
+	SET B, 0x8040
+	JSR write
+	
+	IFN [screen_address], 0
+		SET A, screenPresent
+	IFE [screen_address], 0
+		SET A, screenNotPresent
+	SET B, 0x8060
+	JSR write
+	
+	IFN [disk_address], 0
+		SET A, HMDPresent
+	IFE [disk_address], 0
+		SET A, HMDNotPresent
+	SET B, 0x8080
+	JSR write
+	
+	SET A, 0x0000
+	HWI [disk_address]
+	IFE B, 0x0001
+		SET A, diskPresent
+	IFN B, 0x0001
+		SET A, diskNotPresent
+	SET B, 0x80A0
+	JSR write
+	
+	SET A, 0xFFFF
+	HWI [disk_address]
+	IFE B, 0x7FFF
+		SET A, realHITmedia
+	IFN B, 0xFFFF
+		SET A, notRealHITmedia
+	
+	SET B, 0x80C0
+	JSR write
+	
+	
+	SET A, pressAnyKeyText
+	SET B, 0x80E0
+	JSR write
+	
+	JSR pressAnyKey
+	
+	SET PC, POP
