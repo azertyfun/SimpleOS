@@ -4,13 +4,11 @@
   <properties>
     <property name="emuLoad.projectName">SimpleOS</property>
     <property name="emuLoadMode">project</property>
-    <property name="emuLoad.binaryFilename"></property>
-    <property name="setStartupCoreSpeed">False</property>
   </properties>
   <projects>
     <project path="SimpleOS\SimpleOS.10cproj" />
     <project path="hardware\hardware.10cproj" />
-    <project path="Strings &amp; constants\Strings &amp; constants.10cproj" />
     <project path="programs\programs.10cproj" />
+    <project path="DATA\DATA.10cproj" />
   </projects>
 </solution>

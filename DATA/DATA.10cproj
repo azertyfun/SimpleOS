@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project version="1.7.5" type="code">
-  <name>hardware</name>
+  <name>DATA</name>
   <properties>
     <property name="code.generateBinaryOutput">true</property>
-    <property name="code.binaryOutputFilename">hardware.bin</property>
+    <property name="code.binaryOutputFilename">DATA.bin</property>
     <property name="code.generateHexOutput">false</property>
-    <property name="code.hexOutputFilename">hardware.hex</property>
+    <property name="code.hexOutputFilename">DATA.hex</property>
     <property name="code.setFirstFile">false</property>
   </properties>
-  <references>
-    <project>DATA</project>
-  </references>
+  <references />
   <files>
-    <file path="detectHardware.10c" />
-    <file path="disk.10c" />
-    <file path="video.10c" />
+    <file path="DATA.10c" />
   </files>
 </project>
