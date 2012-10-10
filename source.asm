@@ -23,9 +23,7 @@
 :wordsPerSector DAT 0
 :wordsNumber DAT 0
 
-:validCommand DAT 0 
- 
-BIEF/0.1
+:validCommand DAT 0BIEF/0.1
 media-type: AuthenticHIT
 words-per-sector: 512
 sectors-per-track: 18
@@ -26561,7 +26559,14 @@ set PC,pop; --------------------------------------------
 	
 	SET PC, POP 
 ; --------------------------------------------
-; Title:   strings
+; Title:   DATA
+; Author:  azertyfun
+; Date:    10/10/2012
+; Version: 
+; --------------------------------------------
+
+; --------------------------------------------
+; Title:   DATA
 ; Author:  azertyfun
 ; Date:    8/09/2012
 ; Version: 
@@ -26606,3 +26611,21 @@ set PC,pop; --------------------------------------------
 :typeHelp DAT "Need help? Type help!", 0
 :tooBigText DAT "The program you want to load is bigger than 0x1000 words.", 0
 :load DAT "load", 0
+
+:color DAT 0xF900
+:screen_map DAT 0x8000
+:last_character DAT 0x81e0
+:writing_address DAT 0x8005
+
+:screen_address DAT 0
+:keyboard_address DAT 0
+:clock_address DAT 0
+:disk_address DAT 0
+
+:BOOLshutdown DAT 0
+
+:blocksNumber DAT 0
+:wordsPerSector DAT 0
+:wordsNumber DAT 0
+
+:validCommand DAT 0

@@ -2,11 +2,12 @@
 <project version="1.7.5" type="code">
   <name>SimpleOS</name>
   <properties>
-    <property name="code.generateBinaryOutput">true</property>
+    <property name="code.generateBinaryOutput">True</property>
     <property name="code.binaryOutputFilename">SimpleOS.bin</property>
-    <property name="code.generateHexOutput">false</property>
+    <property name="code.generateHexOutput">True</property>
     <property name="code.hexOutputFilename">SimpleOS.hex</property>
-    <property name="code.setFirstFile">false</property>
+    <property name="code.setFirstFile">True</property>
+    <property name="code.firstFile">SimpleOS.10c</property>
   </properties>
   <references>
     <project>programs</project>

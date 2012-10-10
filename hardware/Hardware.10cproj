@@ -4,7 +4,7 @@
   <properties>
     <property name="code.generateBinaryOutput">true</property>
     <property name="code.binaryOutputFilename">hardware.bin</property>
-    <property name="code.generateHexOutput">false</property>
+    <property name="code.generateHexOutput">True</property>
     <property name="code.hexOutputFilename">hardware.hex</property>
     <property name="code.setFirstFile">false</property>
   </properties>
