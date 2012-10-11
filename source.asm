@@ -25994,6 +25994,27 @@ SET SP, 0
 	MUL Z, X
 	
 	SET PC, POP; --------------------------------------------
+; Title:   keyboard
+; Author:  azertyfun
+; Date:    10/10/2012
+; Version: 
+; --------------------------------------------
+
+:pressAnyKey
+	JSR clearKeyBuffer
+	SET C, 0
+	:PAKLoop
+	SET A, 1
+	HWI [keyboard_address]
+		IFN C, 0
+			SET PC, POP
+	SET PC, PAKLoop
+
+
+:clearKeyBuffer
+	SET A, 0
+	HWI [keyboard_address]
+	SET PC, POP; --------------------------------------------
 ; Title:   video
 ; Author:  azertyfun
 ; Date:    8/09/2012
@@ -26005,6 +26026,54 @@ SET SP, 0
 	SET B, [screen_map]
 	HWI [screen_address]
 	
+	SET PC, POP
+	
+; SET A to address of string
+; SET B to ram address to start writing (ex: 0x8000)
+:write
+	SET Y, A
+	SET Z, B
+	SET A, 0
+	SET B, 0x9000
+	HWI [screen_address]
+	SET A, Y
+	SET B, Z
+
+	SET C, [color]
+	:writeLoop
+		IFE [A], 0
+			SET PC, writeLoopEnd
+		SET [B], [A]
+		BOR [B], C
+		;IFE [A], 0x20
+		;	SET [B], 0x205F
+		ADD A, 1
+		ADD B, 1
+		SET PC, writeLoop
+	
+	:writeLoopEnd
+	SET A, 0
+	SET B, 0x8000
+	HWI [screen_address]
+	SET PC, POP
+		
+:clear
+	SET A, 0
+	SET B, 0x9000
+	HWI [screen_address]
+
+	SET B, [screen_map]
+	:clearLoop
+		SET [B], 0xF920
+		IFE B, [last_character]
+			SET PC, clearLoopEnd
+		ADD B, 1
+		SET PC, clearLoop
+		
+	:clearLoopEnd
+	SET A, 0
+	SET B, 0x8000
+	HWI [screen_address]
 	SET PC, POP 
 ; --------------------------------------------
 ; Title:   about
@@ -26429,75 +26498,6 @@ set PC,pop; --------------------------------------------
 :shutdownProgram
 	SET [validCommand], 1
 	SET [BOOLshutdown], 1
-	SET PC, POP; --------------------------------------------
-; Title:   subroutines
-; Author:  azertyfun
-; Date:    9/09/2012
-; Version: 1.0
-; --------------------------------------------
-
-; SET A to address of string
-; SET B to ram address to start writing (ex: 0x8000)
-:write
-	SET Y, A
-	SET Z, B
-	SET A, 0
-	SET B, 0x9000
-	HWI [screen_address]
-	SET A, Y
-	SET B, Z
-
-	SET C, [color]
-	:writeLoop
-		IFE [A], 0
-			SET PC, writeLoopEnd
-		SET [B], [A]
-		BOR [B], C
-		;IFE [A], 0x20
-		;	SET [B], 0x205F
-		ADD A, 1
-		ADD B, 1
-		SET PC, writeLoop
-	
-	:writeLoopEnd
-	SET A, 0
-	SET B, 0x8000
-	HWI [screen_address]
-	SET PC, POP
-		
-:clear
-	SET A, 0
-	SET B, 0x9000
-	HWI [screen_address]
-
-	SET B, [screen_map]
-	:clearLoop
-		SET [B], 0xF920
-		IFE B, [last_character]
-			SET PC, clearLoopEnd
-		ADD B, 1
-		SET PC, clearLoop
-		
-	:clearLoopEnd
-	SET A, 0
-	SET B, 0x8000
-	HWI [screen_address]
-	SET PC, POP
-
-:pressAnyKey
-	JSR clearKeyBuffer
-	SET C, 0
-	:PAKLoop
-	SET A, 1
-	HWI [keyboard_address]
-		IFN C, 0
-			SET PC, POP
-	SET PC, PAKLoop
-
-
-:clearKeyBuffer
-	SET A, 0
-	HWI [keyboard_address]
 	SET PC, POP; --------------------------------------------
 ; Title:   sysinfo
 ; Author:  zaertyfun
