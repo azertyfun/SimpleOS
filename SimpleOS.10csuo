@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<solution name="SimpleOS" path="F:\Projets\DASM\SimpleOS\SimpleOS.10csln" currentFile="programs\load.10c">
+<solution name="SimpleOS" path="F:\Projets\DASM\SimpleOS\SimpleOS.10csln" currentFile="hardware\detectHardware.10c">
   <openFiles>
     <file path="programs\load.10c" />
-    <file path="Strings &amp; constants\strings.10c" />
     <file path="programs\console.10c" />
     <file path="programs\sysinfo.10c" />
+    <file path="hardware\detectHardware.10c" />
   </openFiles>
 </solution>
