@@ -40,3 +40,9 @@
 	MUL Z, X
 	
 	SET PC, POP
+	
+;A: String to write
+;B: Sector to write to
+:writeDisk
+	;TODO
+	SET PC, POP
