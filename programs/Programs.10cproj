@@ -22,5 +22,6 @@
     <file path="readDisk.10c" />
     <file path="shutdown.10c" />
     <file path="sysinfo.10c" />
+    <file path="loadChoice.10c" />
   </files>
 </project>

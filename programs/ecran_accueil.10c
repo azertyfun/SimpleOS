@@ -22,8 +22,12 @@
 	
 	SET I, 0
 	:waitLoopAccueil
+	SET A, 0x0001
+	HWI [keyboard_address]
+	IFE C, 1
+		SET PC, POP
 	ADD I, 1
-	IFN I, 100000
+	IFN I, 90000
 		SET PC, waitLoopAccueil
 	
 	SET PC, POP

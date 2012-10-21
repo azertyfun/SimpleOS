@@ -51,6 +51,8 @@
 :typeHelp DAT "Need help? Type help!", 0
 :tooBigText DAT "The program you want to load is bigger than 0x1000 words.", 0
 :load DAT "load", 0
+:launchConsole DAT "a. launch console", 0
+:launchOtherProgram DAT "b. launch external program", 0
 
 :color DAT 0xF900
 :screen_map DAT 0x8000
@@ -69,3 +71,4 @@
 :wordsNumber DAT 0
 
 :validCommand DAT 0
+:other_program DAT 0 ;Replace 0 by the address of your program (in the programs project) and the user can launch it at the startup

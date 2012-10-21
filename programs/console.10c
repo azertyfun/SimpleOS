@@ -172,8 +172,6 @@
 ;STRCMP return 0 in Z if the strings at A and at B are different
 ;---------------------------------------------
 :strcmp
-set push,A
-set push,B
 set Z,0
 sub A,1
 sub B,1
@@ -186,6 +184,4 @@ ife [A],[B]
 set PC,sc
 ife [A],[B]
 set Z,1
-set B,pop
-set A,pop
 set PC,pop

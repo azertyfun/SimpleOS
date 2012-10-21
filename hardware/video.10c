@@ -10,6 +10,15 @@
 	SET B, [screen_map]
 	HWI [screen_address]
 	
+	set I, 0x9000
+	
+	:init_video_loop
+		SET [I], 0xF920
+		ADD I, 1
+		IFN I, 0x91e0
+			SET PC, init_video_loop
+		
+	
 	SET PC, POP
 	
 ; SET A to address of string
