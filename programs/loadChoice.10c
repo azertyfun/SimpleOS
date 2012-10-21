@@ -1,0 +1,33 @@
+; --------------------------------------------
+; Title:   loadChoice
+; Author:  azertyfun
+; Date:    21/10/2012
+; Version: 
+; --------------------------------------------
+
+:loadChoice
+	JSR clear
+	
+	IFE [other_program], 0
+		SET Z, 1
+	IFE [other_program], 0
+		SET PC, POP
+	
+	SET A, launchConsole
+	SET B, 0x8000
+	JSR write
+	
+	SET A, launchOtherProgram
+	SET B, 0x8020
+	JSR write
+	
+	:loadChoiceloop
+		JSR pressAnyKey
+		SET Z, 2
+		IFE C, 0x61
+			SET Z, 1
+		IFE C, 0x62
+			SET Z, 0
+		IFN Z, 2
+			SET PC, POP
+		SET PC, loadChoiceLoop

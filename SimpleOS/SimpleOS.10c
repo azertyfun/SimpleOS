@@ -8,7 +8,12 @@
 JSR PILOT_search
 JSR init_video
 JSR ecran_accueil
-JSR console
+
+JSR loadChoice
+IFE Z, 1
+	JSR console
+IFN Z, 1
+	JSR [other_program]
 
 ;After shutdown command
 
