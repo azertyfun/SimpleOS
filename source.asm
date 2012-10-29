@@ -26241,10 +26241,10 @@ SET SP, 0
 		IFE Z, 1
 			JSR shutdownProgram
 			
-		SET B, readDisk
-		JSR strcmp
-		IFE Z, 1
-			JSR readDiskProgram
+		;SET B, readDisk
+		;JSR strcmp
+		;IFE Z, 1
+		;	JSR readDiskProgram
 			
 		SET B, sysInfo
 		JSR strcmp
@@ -26292,19 +26292,19 @@ SET SP, 0
 ;STRCMP return 0 in Z if the strings at A and at B are different
 ;---------------------------------------------
 :strcmp
-set Z,0
-sub A,1
-sub B,1
-:sc
-add A,1
-add B,1
-ifn [A],0
-ifn [B],0
-ife [A],[B]
-set PC,sc
-ife [A],[B]
-set Z,1
-set PC,pop; --------------------------------------------
+	SET Z, 0
+	SUB A, 1
+	SUB B, 1
+	:sc
+		ADD A, 1
+	ADD B, 1
+	IFN [A], 0
+		IFN [B], 0
+			IFE [A], [B]
+	SET PC, sc
+	IFE [A], [B]
+		SET Z, 1
+	SET PC, pop; --------------------------------------------
 ; Title:   ecran_accueil
 ; Author:  azertyfun
 ; Date:    2/10/2012

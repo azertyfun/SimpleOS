@@ -15,17 +15,20 @@ IFE Z, 1
 IFN Z, 1
 	JSR [other_program]
 
-;After shutdown command
+;When the program ends
 
-JSR ecran_accueil
+JSR ecran_accueil ;Write the screen with "SimpleOS" a few seconds
 
 SET A, 0
 SET B, 0
-HWI [screen_address]
+HWI [screen_address] ;Stopping LEM1802
+;Reinitalising registers
 SET C, 0
 SET I, 0
 SET J, 0
 SET X, 0
 SET Y, 0
 SET Z, 0
-SET SP, 0 
+SET SP, 0
+SET [0xFFFF], 0
+SET PC, 0xFFFF
