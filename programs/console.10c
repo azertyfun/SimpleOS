@@ -124,11 +124,6 @@
 		IFE Z, 1
 			JSR shutdownProgram
 			
-		;SET B, readDisk
-		;JSR strcmp
-		;IFE Z, 1
-		;	JSR readDiskProgram
-			
 		SET A, command
 		SET B, sysInfo
 		JSR strcmp
