@@ -63,6 +63,7 @@
 :keyboard_address DAT 0
 :clock_address DAT 0
 :disk_address DAT 0
+:sped3_address DAT 0
 
 :BOOLshutdown DAT 0
 
