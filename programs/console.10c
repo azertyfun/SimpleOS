@@ -112,11 +112,13 @@
 		IFE Z, 1
 			JSR helpProgram
 			
+		SET A, command
 		SET B, about
 		JSR strcmp
 		IFE Z, 1
 			JSR aboutProgram
 			
+		SET A, command
 		SET B, shutdown
 		JSR strcmp
 		IFE Z, 1
@@ -127,36 +129,43 @@
 		;IFE Z, 1
 		;	JSR readDiskProgram
 			
+		SET A, command
 		SET B, sysInfo
 		JSR strcmp
 		IFE Z, 1
 			JSR sysInfoProgram
 			
+		SET A, command
 		SET B, sysInfoMin
 		JSR strcmp
 		IFE Z, 1
 			JSR sysInfoProgram
 			
+		SET A, command
 		SET B, load
 		JSR strcmp
 		IFE Z, 1
 			JSR loadProgram
 			
+		SET A, command
 		SET B, colRed
 		JSR strcmp
 		IFE Z, 1
 			SET [color], 0x4900
 		
+		SET A, command
 		SET B, colWhite
 		JSR strcmp
 		IFE Z, 1
 			SET [color], 0xF900
-			
+		
+		SET A, command
 		SET B, colGreen
 		JSR strcmp
 		IFE Z, 1
 			SET [color], 0x2900
 		
+		SET A, command
 		SET B, colBlack
 		JSR strcmp
 		IFE Z, 1
@@ -169,9 +178,9 @@
 	
 ;J'ai pris ça de frOSt :)
  
-;---------------------------------------------
-;STRCMP return 0 in Z if the strings at A and at B are different
-;---------------------------------------------
+;------------------------------------------------------------------
+; STRCMP: return 0 in Z if the strings at A and at B are different
+;------------------------------------------------------------------
 :strcmp
 	SET Z, 0
 	SUB A, 1
