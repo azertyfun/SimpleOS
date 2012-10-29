@@ -104,6 +104,7 @@
 		ADD I, 1
 		ADD A, 1
 		SET PC, execCommandLoop
+		
 	:execCommandNext
 		SET A, command
 		SET B, help
@@ -129,7 +130,7 @@
 		SET B, sysInfo
 		JSR strcmp
 		IFE Z, 1
-			JSR sysinfoProgram
+			JSR sysInfoProgram
 			
 		SET B, sysInfoMin
 		JSR strcmp
