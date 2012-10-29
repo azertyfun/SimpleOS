@@ -137,12 +137,6 @@
 			JSR sysInfoProgram
 			
 		SET A, command
-		SET B, load
-		JSR strcmp
-		IFE Z, 1
-			JSR loadProgram
-			
-		SET A, command
 		SET B, colRed
 		JSR strcmp
 		IFE Z, 1
