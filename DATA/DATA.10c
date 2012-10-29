@@ -44,7 +44,7 @@
 :notRealHITmedia DAT "- Unreal or unpresent HIT disk.", 0
 :diskPresent DAT "- Disk present.", 0
 :diskNotPresent DAT "- Disk not present", 0
-:sped3Present DAT "- SPED-3 present."
+:sped3Present DAT "- SPED-3 present.", 0
 :sped3NotPresent DAT "- SPED-3 not present or detected.", 0
 :sysVersion DAT "- SimpleOS beta v1.1.1", 0
 :sysInfo DAT "sysInfo", 0
