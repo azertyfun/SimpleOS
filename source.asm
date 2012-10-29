@@ -25920,20 +25920,23 @@ IFE Z, 1
 IFN Z, 1
 	JSR [other_program]
 
-;After shutdown command
+;When the program ends
 
-JSR ecran_accueil
+JSR ecran_accueil ;Write the screen with "SimpleOS" a few seconds
 
 SET A, 0
 SET B, 0
-HWI [screen_address]
+HWI [screen_address] ;Stopping LEM1802
+;Reinitalising registers
 SET C, 0
 SET I, 0
 SET J, 0
 SET X, 0
 SET Y, 0
 SET Z, 0
-SET SP, 0  
+SET SP, 0
+SET [0xFFFF], 0
+SET PC, 0xFFFF 
 ; --------------------------------------------
 ; Title:   detectHardware
 ; Author:  azertyfun - based on a Vdragorn's example
@@ -25954,6 +25957,8 @@ SET SP, 0
             SET [clock_address], J
         IFE A, 0x4CAE
         	SET [disk_address], J
+        IFE A, 0xBF3C
+        	SET [sped3_address], J
         ADD J,1
         IFN Z,J
             SET PC, PILOT_search_loop
@@ -26224,6 +26229,7 @@ SET SP, 0
 		ADD I, 1
 		ADD A, 1
 		SET PC, execCommandLoop
+		
 	:execCommandNext
 		SET A, command
 		SET B, help
@@ -26231,11 +26237,13 @@ SET SP, 0
 		IFE Z, 1
 			JSR helpProgram
 			
+		SET A, command
 		SET B, about
 		JSR strcmp
 		IFE Z, 1
 			JSR aboutProgram
 			
+		SET A, command
 		SET B, shutdown
 		JSR strcmp
 		IFE Z, 1
@@ -26246,36 +26254,43 @@ SET SP, 0
 		;IFE Z, 1
 		;	JSR readDiskProgram
 			
+		SET A, command
 		SET B, sysInfo
 		JSR strcmp
 		IFE Z, 1
-			JSR sysinfoProgram
+			JSR sysInfoProgram
 			
+		SET A, command
 		SET B, sysInfoMin
 		JSR strcmp
 		IFE Z, 1
 			JSR sysInfoProgram
 			
+		SET A, command
 		SET B, load
 		JSR strcmp
 		IFE Z, 1
 			JSR loadProgram
 			
+		SET A, command
 		SET B, colRed
 		JSR strcmp
 		IFE Z, 1
 			SET [color], 0x4900
 		
+		SET A, command
 		SET B, colWhite
 		JSR strcmp
 		IFE Z, 1
 			SET [color], 0xF900
-			
+		
+		SET A, command
 		SET B, colGreen
 		JSR strcmp
 		IFE Z, 1
 			SET [color], 0x2900
 		
+		SET A, command
 		SET B, colBlack
 		JSR strcmp
 		IFE Z, 1
@@ -26288,9 +26303,9 @@ SET SP, 0
 	
 ;J'ai pris ça de frOSt :)
  
-;---------------------------------------------
-;STRCMP return 0 in Z if the strings at A and at B are different
-;---------------------------------------------
+;------------------------------------------------------------------
+; STRCMP: return 0 in Z if the strings at A and at B are different
+;------------------------------------------------------------------
 :strcmp
 	SET Z, 0
 	SUB A, 1
@@ -26694,6 +26709,7 @@ SET SP, 0
 :keyboard_address DAT 0
 :clock_address DAT 0
 :disk_address DAT 0
+:sped3_address DAT 0
 
 :BOOLshutdown DAT 0
 
