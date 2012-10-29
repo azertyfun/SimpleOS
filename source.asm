@@ -26610,11 +26610,18 @@ SET PC, 0xFFFF
 	SET B, 0x8060
 	JSR write
 	
+	IFN [sped3_address], 0
+		SET A, sped3Present
+	IFE [sped3_address], 0
+		SET A, sped3NotPresent
+	SET B, 0x8080
+	JSR write
+	
 	IFN [disk_address], 0
 		SET A, HMDPresent
 	IFE [disk_address], 0
 		SET A, HMDNotPresent
-	SET B, 0x8080
+	SET B, 0x80A0
 	JSR write
 	
 	SET A, 0x0000
@@ -26623,7 +26630,7 @@ SET PC, 0xFFFF
 		SET A, diskPresent
 	IFN B, 0x0001
 		SET A, diskNotPresent
-	SET B, 0x80A0
+	SET B, 0x80C0
 	JSR write
 	
 	SET A, 0xFFFF
@@ -26633,12 +26640,12 @@ SET PC, 0xFFFF
 	IFN B, 0xFFFF
 		SET A, notRealHITmedia
 	
-	SET B, 0x80C0
+	SET B, 0x80E0
 	JSR write
 	
 	
 	SET A, pressAnyKeyText
-	SET B, 0x80E0
+	SET B, 0x8110
 	JSR write
 	
 	JSR pressAnyKey
@@ -26690,6 +26697,8 @@ SET PC, 0xFFFF
 :notRealHITmedia DAT "- Unreal or unpresent HIT disk.", 0
 :diskPresent DAT "- Disk present.", 0
 :diskNotPresent DAT "- Disk not present", 0
+:sped3Present DAT "- SPED-3 present."
+:sped3NotPresent DAT "- SPED-3 not present or detected.", 0
 :sysVersion DAT "- SimpleOS beta v1.1.1", 0
 :sysInfo DAT "sysInfo", 0
 :sysInfoMin DAT "sysinfo", 0
