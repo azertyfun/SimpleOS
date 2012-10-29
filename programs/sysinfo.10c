@@ -26,9 +26,10 @@
 	
 	IFN [sped3_address], 0
 		SET A, sped3Present
-	IFE [sped3_address], 1
+	IFE [sped3_address], 0
 		SET A, sped3NotPresent
 	SET B, 0x8080
+	JSR write
 	
 	IFN [disk_address], 0
 		SET A, HMDPresent
@@ -60,5 +61,7 @@
 	SET A, pressAnyKeyText
 	SET B, 0x8110
 	JSR write
+	
+	JSR pressAnyKey
 	
 	SET PC, POP
