@@ -25935,8 +25935,9 @@ SET X, 0
 SET Y, 0
 SET Z, 0
 SET SP, 0
+SET [0xFFFE], 0
 SET [0xFFFF], 0
-SET PC, 0xFFFF 
+SET PC, 0xFFFE 
 ; --------------------------------------------
 ; Title:   detectHardware
 ; Author:  azertyfun - based on a Vdragorn's example
@@ -26249,11 +26250,6 @@ SET PC, 0xFFFF
 		IFE Z, 1
 			JSR shutdownProgram
 			
-		;SET B, readDisk
-		;JSR strcmp
-		;IFE Z, 1
-		;	JSR readDiskProgram
-			
 		SET A, command
 		SET B, sysInfo
 		JSR strcmp
@@ -26265,12 +26261,6 @@ SET PC, 0xFFFF
 		JSR strcmp
 		IFE Z, 1
 			JSR sysInfoProgram
-			
-		SET A, command
-		SET B, load
-		JSR strcmp
-		IFE Z, 1
-			JSR loadProgram
 			
 		SET A, command
 		SET B, colRed
@@ -26384,88 +26374,6 @@ SET PC, 0xFFFF
 		SET PC, waitLoopinvalidCommand
 	
 	SET PC, POP; --------------------------------------------
-; Title:   load
-; Author:  azertyfun
-; Date:    9/10/2012
-; Version: 
-; --------------------------------------------
-
-; --------------------------------------------
-; THIS PROGRAM IS'NT FUNCTIONNAL AND APPROVED,
-; BUT IN DEV! USE AT YOUR OWN RISK!
-; --------------------------------------------
-
-
-:loadProgram
-	JSR clear
-	SET [validCommand], 1
-	
-	:clearProgramCache
-
-	SET B, [0xE000]
-	:clearProgramCacheLoop
-		SET [B], 0x0
-		IFE B, [0xF000]
-			SET PC, clearLoopEnd
-		ADD B, 1
-		SET PC, clearprogramCacheLoop
-		
-	:clearprogramCacheLoopEnd
-	
-	JSR pressAnyKey ;TMP
-
-	
-	JSR detectHMD
-	IFE Z, 0
-		SET PC, POP
-	
-	JSR detectDisk
-	IFE Z, 0
-		SET PC, POP
-	
-	JSR getDiskInfo
-	SET [sectorsNumber], X
-	SET [wordsPerSector], Y
-	SET [wordsNumber], Z
-	
-	:copy
-		IFL [wordsNumber], 0x1000
-			SET PC, copy_all
-	:copy_first
-		SUB [sectorsNumber], 1
-		SET [wordsNumber], [sectorsNumber]
-		MUL [wordsNumber], [wordsPerSector]
-		IFG [wordsNumber], 0x1000
-			SET PC, copy_first
-		SET PC, finish
-	:copy_all
-	;:finish
-	;	SET A, 0x0010
-	;	SET B, 0
-	;	SET X, 0xE000
-	;	SET [0xEFFE], 0x7A40
-	;	SET [0xEFFF], disk_address
-	;	SET PC, 0xEFFE
-	:finish
-		SET A, 0x0010
-		SET B, 0
-		SET X, 0xE000
-		HWI [disk_address]
-		SET A, 0x0004
-		:finishLoop
-			HWI [disk_address]
-			IFN B, 0x0002
-				SET PC, finishLoop
-		SET PC, 0xE000
-			
-	
-	SET PC, POP
-
-
-:sectorsNumber DAT 0
-:wordsPerSector DAT 0
-:wordsNumber DAT 0
-:addr DAT 0xFFFF; --------------------------------------------
 ; Title:   loadChoice
 ; Author:  azertyfun
 ; Date:    21/10/2012
@@ -26497,84 +26405,7 @@ SET PC, 0xFFFF
 			SET Z, 0
 		IFN Z, 2
 			SET PC, POP
-		SET PC, loadChoiceLoop; -----------------------------------------------------------------------------------
-; Title:   readDisk
-; Author:  aezrtyfun
-; Date:    12/09/2012
-; Version: 1.0
-;
-;  
-; ----- THIS CODE IS NOT COMPATIBLE WITH NOTCH'S DISK SPECS: ONLY WITH HMD2043 -----
-;
-;
-; -----------------------------------------------------------------------------------
-
-:readDiskProgram
-	JSR clear
-	SET [validCommand], 1
-	JSR checkHMD2043
-	IFE [disk_address], 0
-		SET PC, POP
-	
-	JSR checkDisk
-	IFE Z, 1
-		SET PC, POP
-		
-	;Todo: add blocs counter & reader + screen writer.
-	
-	JSR pressAnyKey ;TEMP
-	
-	JSR readDisk
-	
-	JSR pressAnyKey
-	
-	SET PC, POP
-	
-	
-	
-:checkHMD2043
-	IFN [disk_address], 0
-		SET PC, POP
-	SET A, noHMD2043PresentText
-	SET B, 0x8000
-	JSR write
-	
-	JSR pressAnyKey
-	
-	SET PC, POP
-	
-:checkDisk
-	SET A, 0
-	SET Z, 0
-	HWI [disk_address]
-	IFE B, 1
-		SET PC, POP
-	
-	SET A, noDiskPresentText
-	SET B, 0x8000
-	JSR write
-	
-	JSR pressAnyKey
-	
-	SET Z, 1 ;To stop executing program after SET PC, POP
-	
-	SET PC, POP
-	
-:readDisk
-	SET A, 0x0001
-	HWI [disk_address]
-	SET X, C ;Number of sectors
-	IFG X, 16 ;If number of sector>16
-		SET X, 16
-	SET A, 0x0010
-	SET B, 0
-	SET C, X
-	SET X, 0x8000
-	HWI [disk_address]
-	JSR pressAnyKey
-	
-	
-	SET PC, POP; --------------------------------------------
+		SET PC, loadChoiceLoop; --------------------------------------------
 ; Title:   shutdown
 ; Author:  Nathan
 ; Date:    10/09/2012
@@ -26585,6 +26416,32 @@ SET PC, 0xFFFF
 	SET [validCommand], 1
 	SET [BOOLshutdown], 1
 	SET PC, POP; --------------------------------------------
+; Title:   spedTest
+; Author:  azertyfun
+; Date:    29/10/2012
+; Version: 1.0
+; --------------------------------------------
+
+:spedTestProgram
+	
+	JSR clear
+	
+	SET A, spedTestText
+	SET B, 0x8000
+	JSR write
+	
+	SET X, 0xA000
+	SET Y, 0x1000
+	HWI [sped3_address]
+	
+	SET [0xA000], 0x0000
+	SET [0xA001], 0x0F30
+	
+	JSR pressAnyKey
+	
+	SET PC, POP
+	
+:spedTestText DAT "SPED-3 output test. Will not work if you don't have any sped-3 connected, verify it by launching SimpleOS and typing 'sysInfo'", 0; --------------------------------------------
 ; Title:   sysinfo
 ; Author:  zaertyfun
 ; Date:    8/10/2012

@@ -18,10 +18,9 @@
     <file path="about.10c" />
     <file path="help.10c" />
     <file path="invalidCommand.10c" />
-    <file path="load.10c" />
-    <file path="readDisk.10c" />
     <file path="shutdown.10c" />
     <file path="sysinfo.10c" />
     <file path="loadChoice.10c" />
+    <file path="spedTest.10c" />
   </files>
 </project>
