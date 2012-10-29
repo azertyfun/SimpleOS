@@ -1,0 +1,16 @@
+; --------------------------------------------
+; Title:   spedTest
+; Author:  azertyfun
+; Date:    29/10/2012
+; Version: 1.0
+; --------------------------------------------
+
+:spedTestProgram
+	
+	SET A, spedTestText
+	SET B, 0x8000
+	JSR write
+	
+	SET PC, POP
+	
+:spedTestText DAT "SPED-3 output test.", 0
