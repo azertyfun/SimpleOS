@@ -22,7 +22,7 @@
 :readDisk DAT "readDisk", 0
 :colorTxt DAT "color", 0
 :helpText DAT "help: Shows this help page.     about: Shows the about window.  shutdown: shutdowns the computersysInfo: shows infos about the      computer.                   Press any key to continue...", 0
-:aboutText DAT "About: SimpleOS veta v1.1.1 created by azertyfun for DCPU-16 (0x10c). Programmed on 0x10c devkit v1.7.5.", 0
+:aboutText DAT "About: SimpleOS beta 1.2 created by azertyfun for DCPU-16 (0x10c). Programmed on 0x10c devkit v1.7.5.", 0
 :shutdownText DAT "Computer is shutted down.", 0
 :noDiskPresentText DAT "No disk detected.", 0
 :disk_sectors_number DAT 0
@@ -46,7 +46,7 @@
 :diskNotPresent DAT "- Disk not present", 0
 :sped3Present DAT "- SPED-3 present.", 0
 :sped3NotPresent DAT "- SPED-3 not present or detected.", 0
-:sysVersion DAT "- SimpleOS beta v1.1.1", 0
+:sysVersion DAT "- SimpleOS beta v1.2", 0
 :sysInfo DAT "sysInfo", 0
 :sysInfoMin DAT "sysinfo", 0
 :pressAnyKeyText DAT "Press any key to continue...", 0
