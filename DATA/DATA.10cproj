@@ -2,7 +2,7 @@
 <project version="1.7.5" type="code">
   <name>DATA</name>
   <properties>
-    <property name="code.generateBinaryOutput">true</property>
+    <property name="code.generateBinaryOutput">False</property>
     <property name="code.binaryOutputFilename">DATA.bin</property>
     <property name="code.generateHexOutput">True</property>
     <property name="code.hexOutputFilename">DATA.hex</property>
