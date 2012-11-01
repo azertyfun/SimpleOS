@@ -12,7 +12,8 @@
 	
 	IFN [BOOLshutdown], 1
 		SET PC, console
-		
+	
+	SET Z, 1
 	SET PC, POP
 	
 :init_console
