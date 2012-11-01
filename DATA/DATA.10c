@@ -2,7 +2,7 @@
 ; Title:   DATA
 ; Author:  azertyfun
 ; Date:    8/09/2012
-; Version: 
+; Version: -
 ; --------------------------------------------
 
 :video_initalized DAT "Video initalized", 0
@@ -58,6 +58,7 @@
 :keyboard_address DAT 0
 :clock_address DAT 0
 :disk_address DAT 0
+:devkitDisk_address DAT 0
 :sped3_address DAT 0
 
 :BOOLshutdown DAT 0
@@ -67,4 +68,4 @@
 :wordsNumber DAT 0
 
 :validCommand DAT 0
-:other_program DAT 0 ;Replace 0 by the address of your program (in the programs project) and the user can launch it at the startup
+:other_program DAT 0x04BC ;Replace 0 by the address of your program (in the programs project) and the user can launch it at the startup
