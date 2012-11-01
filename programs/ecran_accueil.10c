@@ -27,7 +27,7 @@
 	IFE C, 1
 		SET PC, POP
 	ADD I, 1
-	IFN I, 90000
+	IFN I, 10000
 		SET PC, waitLoopAccueil
 	
 	SET PC, POP
