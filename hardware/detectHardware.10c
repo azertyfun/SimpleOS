@@ -17,6 +17,8 @@
         IFE a, 0xB402
             SET [clock_address], J
         IFE A, 0x4CAE
+        	SET [devkitDisk_address], J
+        IFE A, 0x24c5
         	SET [disk_address], J
         IFE A, 0xBF3C
         	SET [sped3_address], J
