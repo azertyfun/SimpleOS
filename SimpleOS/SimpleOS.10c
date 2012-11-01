@@ -23,4 +23,6 @@ SET A, 0
 SET B, 0
 HWI [screen_address] ;Stopping LEM1802
 
-SUB PC, 1 ;Temp, waiting for a stable shutdown system. If you have, tell me!
+SET [0xFFFE], 0
+SET [0xFFFF], 0
+SET PC, 0xFFFE
