@@ -5,7 +5,7 @@
     <property name="code.generateBinaryOutput">False</property>
     <property name="code.binaryOutputFilename">hardware.bin</property>
     <property name="code.generateHexOutput">True</property>
-    <property name="code.hexOutputFilename">hardware.hex</property>
+    <property name="code.hexOutputFilename">..\compiled\hardware.hex</property>
     <property name="code.setFirstFile">false</property>
   </properties>
   <references>

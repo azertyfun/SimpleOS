@@ -6,5 +6,31 @@
 ; --------------------------------------------
 
 :load
-
+	JSR clear
+	IFN [disk_address], 0
+		SET PC, officialDisk
+	IFN [disk_address], 0
+		SET PC, devkitDisk
+	
+	SET A, noDiskPresentText
+	SET B, 0x8000
+	JSR write
+	
+	JSR pressAnyKey
+	
 	SET PC, POP
+	
+:officialDisk
+	SET A, officialDiskText
+	SET B, 0x8000
+	JSR write
+	JSR pressAnyKey
+	SET PC, POP
+	
+:devkitDisk
+	SET A, devkitDiskText
+	SET B, 0x8000
+	JSR write
+	JSR pressAnyKey
+	SET PC, POP
+	
