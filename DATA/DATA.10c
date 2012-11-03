@@ -1,4 +1,4 @@
-; --------------------------------------------
+﻿; --------------------------------------------
 ; Title:   DATA
 ; Author:  azertyfun
 ; Date:    8/09/2012
@@ -80,10 +80,6 @@ DAT "Created by azertyfun, 2012      ", 0
 :wordsPerSector DAT 0
 :wordsNumber DAT 0
 
-;TMP
-:officialDiskText DAT "DEBUG: official disk detected", 0
-:devkitDiskText DAT "DEBUG: devkit disk detected", 0
-
 
 :validCommand DAT 0
-:other_program DAT 0x04BC ;Replace 0 by the address of your program (in the programs project) and the user can launch it at the startup
+:other_program DAT 0x01B8 ;Replace 0 by the address of your program (in the programs project) and the user can launch it at the startup
