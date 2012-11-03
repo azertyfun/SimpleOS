@@ -1,0 +1,89 @@
+; --------------------------------------------
+; Title:   DATA
+; Author:  azertyfun
+; Date:    8/09/2012
+; Version: -
+; --------------------------------------------
+
+:video_initalized DAT "Video initalized", 0
+:console_startLine DAT "SOS> ", 0
+:actualAddress DAT 0x8005
+:command DAT 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+:help DAT "help", 0
+:about DAT "about", 0
+:shutdown DAT "shutdown", 0
+:readDisk DAT "readDisk", 0
+:colorTxt DAT "color", 0
+:helpText DAT "help: Affiche cette page d'aide.about: Affiche la fenetre a propos                              Shutdown: shutdowns the computersysInfo: shows infos about the computer.                        Appuyez sur une touche pour continuer.", 0
+:aboutText DAT "A propos: SimpleOS beta 1.2 a ete cree par azertyfun pour le DCPU-16 (0x10c). Programme cree sur devkit 1.7.5", 0
+:shutdownText DAT "L'ordinateur est eteint", 0
+:noDiskPresentText DAT "Aucun disque detecte", 0
+:disk_sectors_number DAT 0
+:noHMD2043PresentText DAT "Aucun HMD2043 detecte", 0
+:readInto DAT "                                ", 0
+:accueil
+DAT "         ███  ███   ███         "
+DAT "        █    █   █ █            "
+DAT "         ██  █   █  ██          "
+DAT "           █ █   █    █         "
+DAT "        ███   ███  ███          "
+DAT "                                "
+DAT " Un OS plus fort, meilleur,     "
+DAT "                  plus rapide ! "
+DAT "                                "
+DAT "                                "
+DAT "                                "
+DAT "Cree par azertyfun, 2012        ", 0
+
+:colWhite DAT "white", 0
+:colRed DAT "red", 0
+:colBlack DAT "black", 0
+:colGreen DAT "green", 0
+:invalidCommandTxt DAT "Commande invalide.              ", 0
+:consoleStatusBar DAT "Console de SimpleOS par azerty~ ", 0
+:screenPresent DAT "- Ecran present.", 0
+:screenNotPresent DAT "- Ecran non present ou detecte.", 0
+:sysInfotitle DAT "Informations systeme:           --------------------", 0
+:HMDPresent DAT "- HMD2043 present.", 0
+:HMDNotPresent DAT "- HMD2043 non present ou detecte.", 0
+:realHITmedia DAT "- HIT disque authentique.", 0
+:notRealHITmedia DAT "- Disque HIT non authent. ou present", 0
+:diskPresent DAT "- Disk non present", 0
+:diskNotPresent DAT "- Disk non present", 0
+:sped3Present DAT "- SPED-3 present.", 0
+:sped3NotPresent DAT "- SPED-3 non present ou detecte.", 0
+:sysVersion DAT "- SimpleOS beta v1.2", 0
+:sysInfo DAT "sysInfo", 0
+:sysInfoMin DAT "sysinfo", 0
+:pressAnyKeyText DAT "Appuyez sur une touche pour continuer", 0
+:typeHelp DAT "Besoin d'adie? Tapez aide !", 0
+:tooBigText DAT "Le programme que vous voulez est plus gros que 0x1000 mots", 0
+:load DAT "load", 0
+:launchConsole DAT "a. Lancer la console", 0
+:launchOtherProgram DAT "b. Lancer le programme externe", 0
+
+:color DAT 0xF900
+:screen_map DAT 0x8000
+:last_character DAT 0x81e0
+:writing_address DAT 0x8005
+
+:screen_address DAT 0
+:keyboard_address DAT 0
+:clock_address DAT 0
+:disk_address DAT 0
+:devkitDisk_address DAT 0
+:sped3_address DAT 0
+
+:BOOLshutdown DAT 0
+
+:blocksNumber DAT 0
+:wordsPerSector DAT 0
+:wordsNumber DAT 0
+
+;TMP
+:officialDiskText DAT "DEBUG: official disk detected", 0
+:devkitDiskText DAT "DEBUG: devkit disk detected", 0
+
+
+:validCommand DAT 0
+:other_program DAT 0x01B8 ;Replace 0 by the address of your program (in the programs project) and the user can launch it at the startup
