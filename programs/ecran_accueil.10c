@@ -13,7 +13,7 @@
 	HWI [screen_address]
 
 	SET A, accueil
-	SET B, 0x80A0
+	SET B, 0x8000
 	JSR write
 	
 	SET A, 0
@@ -27,7 +27,7 @@
 	IFE C, 1
 		SET PC, POP
 	ADD I, 1
-	IFN I, 10000
+	IFN I, 100000
 		SET PC, waitLoopAccueil
 	
 	SET PC, POP
