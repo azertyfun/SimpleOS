@@ -21,7 +21,20 @@
 :disk_sectors_number DAT 0
 :noHMD2043PresentText DAT "No HMD2043 detected"
 :readInto DAT "                                ", 0
-:accueil DAT "            SimpleOS            ", 0
+:accueil
+DAT "         ███  ███   ███         "
+DAT "        █    █   █ █            "
+DAT "         ██  █   █  ██          "
+DAT "           █ █   █    █         "
+DAT "        ███   ███  ███          "
+DAT "                                "
+DAT " An OS better, faster, stronger "
+DAT "                                "
+DAT "                                "
+DAT "                                "
+DAT "                                "
+DAT "Created by azertyfun, 2012      ", 0
+
 :colWhite DAT "white", 0
 :colRed DAT "red", 0
 :colBlack DAT "black", 0
