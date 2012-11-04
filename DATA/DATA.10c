@@ -6,7 +6,6 @@
 ; --------------------------------------------
 
 :console_startLine DAT "SOS> ", 0
-:actualAddress DAT 0x8005
 :command DAT 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 :help DAT "help", 0
 :about DAT "about", 0
@@ -18,7 +17,6 @@
 :noDiskPresentText DAT "No disk detected.", 0
 :disk_sectors_number DAT 0
 :noHMD2043PresentText DAT "No HMD2043 detected"
-:readInto DAT "                                ", 0
 :accueil
 DAT "         ███  ███   ███         "
 DAT "        █    █   █ █            "
@@ -33,10 +31,6 @@ DAT "                                "
 DAT "                                "
 DAT "Created by azertyfun, 2012      ", 0
 
-:colWhite DAT "white", 0
-:colRed DAT "red", 0
-:colBlack DAT "black", 0
-:colGreen DAT "green", 0
 :invalidCommandTxt DAT "Invalid command.                ", 0
 :consoleStatusBar DAT "SimpleOS console by azertyfun   ", 0
 :screenPresent DAT "- Screen present.", 0
@@ -55,7 +49,6 @@ DAT "Created by azertyfun, 2012      ", 0
 :sysInfoMin DAT "sysinfo", 0
 :pressAnyKeyText DAT "Press any key to continue...", 0
 :typeHelp DAT "Need help? Type help!", 0
-:load DAT "load", 0
 
 :color DAT 0xF900
 :screen_map DAT 0x8000
