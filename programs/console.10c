@@ -64,8 +64,13 @@
 	SET A, 1
 	HWI [keyboard_address]
 	IFN C, 0
-		SET PC, POP
+		SET PC, charGet
 	SET PC, getChar
+	
+:charGet
+	IFG C, 0x60
+		SUB C, 32
+	SET PC, POP
 
 :printChar
 	IFG [writing_address], 0x8045
@@ -131,11 +136,6 @@
 		IFE Z, 1
 			JSR sysInfoProgram
 			
-		SET A, command
-		SET B, sysInfoMin
-		JSR strcmp
-		IFE Z, 1
-			JSR sysInfoProgram
 	IFN [validCommand], 1
 		JSR invalidCommand
 	
