@@ -1,11 +1,10 @@
-; --------------------------------------------
+﻿; --------------------------------------------
 ; Title:   DATA
 ; Author:  azertyfun
 ; Date:    8/09/2012
 ; Version: -
 ; --------------------------------------------
 
-:video_initalized DAT "Video initalized", 0
 :console_startLine DAT "SOS> ", 0
 :actualAddress DAT 0x8005
 :command DAT 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -16,7 +15,6 @@
 :colorTxt DAT "color", 0
 :helpText DAT "help: Affiche cette page d'aide.about: Affiche la fenetre a propos                              Shutdown: shutdowns the computersysInfo: shows infos about the computer.                        Appuyez sur une touche pour continuer.", 0
 :aboutText DAT "A propos: SimpleOS beta 1.2 a ete cree par azertyfun pour le DCPU-16 (0x10c). Programme cree sur devkit 1.7.5", 0
-:shutdownText DAT "L'ordinateur est eteint", 0
 :noDiskPresentText DAT "Aucun disque detecte", 0
 :disk_sectors_number DAT 0
 :noHMD2043PresentText DAT "Aucun HMD2043 detecte", 0
@@ -57,10 +55,7 @@ DAT "Cree par azertyfun, 2012        ", 0
 :sysInfoMin DAT "sysinfo", 0
 :pressAnyKeyText DAT "Appuyez sur une touche pour continuer", 0
 :typeHelp DAT "Besoin d'adie? Tapez aide !", 0
-:tooBigText DAT "Le programme que vous voulez est plus gros que 0x1000 mots", 0
 :load DAT "load", 0
-:launchConsole DAT "a. Lancer la console", 0
-:launchOtherProgram DAT "b. Lancer le programme externe", 0
 
 :color DAT 0xF900
 :screen_map DAT 0x8000
