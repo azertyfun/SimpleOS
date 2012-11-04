@@ -136,6 +136,12 @@
 		IFE Z, 1
 			JSR sysInfoProgram
 			
+		SET A, command
+		SET B, startS
+		JSR strcmp
+		IFE Z, 1
+			JSR startSProgram
+			
 	IFN [validCommand], 1
 		JSR invalidCommand
 	

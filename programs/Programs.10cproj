@@ -20,5 +20,6 @@
     <file path="invalidCommand.10c" />
     <file path="shutdown.10c" />
     <file path="sysinfo.10c" />
+    <file path="startS.10c" />
   </files>
 </project>

@@ -1,0 +1,22 @@
+; --------------------------------------------
+; Title:   startS
+; Author:  azertfun
+; Date:    4/11/2012
+; Version: -
+; --------------------------------------------
+
+:startSProgram
+	JSR clear			  ;Excepted if you want to create your own clear subroutine (to change the background color for exemple).
+	SET [validCommand], 1 ;Important, it's for the console does'nt say "Invalid program" after the program ends.
+	
+	
+	;Write your program here with the drivers (see the wiki on github).
+	
+	;ExampleProgram
+	JSR clear
+	SET A, helloWorld
+	SET B, 0x8000
+	JSR write
+	JSR pressAnyKey
+	
+	SET PC, POP ;To return to the console.
