@@ -10,6 +10,10 @@
 	SET B, [screen_map]
 	HWI [screen_address]
 	
+	SET A, 1
+	SET B, font
+	HWI [screen_address]
+	
 	set I, 0x9000
 	
 	:init_video_loop
