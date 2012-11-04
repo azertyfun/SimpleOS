@@ -136,30 +136,6 @@
 		JSR strcmp
 		IFE Z, 1
 			JSR sysInfoProgram
-			
-		SET A, command
-		SET B, colRed
-		JSR strcmp
-		IFE Z, 1
-			SET [color], 0x4900
-		
-		SET A, command
-		SET B, colWhite
-		JSR strcmp
-		IFE Z, 1
-			SET [color], 0xF900
-		
-		SET A, command
-		SET B, colGreen
-		JSR strcmp
-		IFE Z, 1
-			SET [color], 0x2900
-		
-		SET A, command
-		SET B, colBlack
-		JSR strcmp
-		IFE Z, 1
-			SET [color], 0x0900
 	IFN [validCommand], 1
 		JSR invalidCommand
 	
